@@ -1,3 +1,10 @@
+CREATE DATABASE IF NOT EXISTS marketing_analytics;
+USE marketing_analytics;
+
+DROP TABLE IF EXISTS campaigns;
+DROP TABLE IF EXISTS monthly_performance;
+DROP TABLE IF EXISTS channels;
+
 create table monthly_performance (
     id int auto_increment primary key,
     month varchar(7),

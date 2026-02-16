@@ -46,6 +46,46 @@
                     <p class="value">Loading...</p>
                 </div>
             </section>
+            <section id="insights" class="insights-panel card">
+              <h2>AI Insights & Recommendations</h2>
+              <ul id="insights-list">
+                  <li>Loading insights...</li>
+              </ul>
+          </section>
+
+          <div class="content-grid-2col">
+              <!-- 2. CHANNEL TABLE -->
+              <section id="channels" class="card">
+                  <div class="section-header">
+                      <h2>Channel Performance</h2>
+                      <div class="controls">
+                          <label>Sort by:</label>
+                          <select id="channel-sort">
+                              <option value="roas">ROAS</option>
+                              <option value="total_spend">Spend</option>
+                              <option value="total_revenue">Revenue</option>
+                              <option value="cpa">CPA</option>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="table-wrapper">
+                      <table id="channel-table">
+                          <thead>
+                              <tr>
+                                  <th>Channel</th>
+                                  <th>Spend</th>
+                                  <th>Revenue</th>
+                                  <th>ROAS</th>
+                                  <th>CPA</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <!-- Rows injected by JS -->
+                          </tbody>
+                      </table>
+                  </div>
+              </section>
+              
 
           </main>
         

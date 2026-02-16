@@ -1,16 +1,77 @@
-# React + Vite
+# Marketing Analytics Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack marketing analytics system that processes campaign data using Python and visualizes it in a modern Node.js + MySQL dashboard.
 
-Currently, two official plugins are available:
+## Project Structure
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- `spend_analysis.py`: Python script for data processing and analysis.
+- `backend/`: Node.js API and data import scripts.
+- `frontend/`: HTML/CSS/JS dashboard.
+- `database/`: SQL schema.
+- `data/`: Generated JSON summaries.
 
-## React Compiler
+## Prerequisites
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Python 3.x (with pandas, numpy)
+- Node.js (v14+)
+- MySQL Server
 
-## Expanding the ESLint configuration
+## Setup Instructions
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 1. Database Setup
+
+1. Create a MySQL database and user, or use your existing root user.
+2. Update `backend/config/database.js` or create a `.env` file in the root directory with your credentials:
+
+```env
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=yourpassword
+DB_NAME=marketing_analytics
+PORT=3000
+```
+
+3. Run the schema script to create tables:
+   ```bash
+   mysql -u root -p < database/schema.sql
+   ```
+
+### 2. Generate Analysis Data (Python)
+
+Run the Python script to process the CSV data and generate `summary_data.json`:
+
+```bash
+# Install dependencies
+pip install pandas numpy
+
+# Run analysis
+python3 spend_analysis.py
+```
+
+This will create `data/summary_data.json` based on `marketing_spend_data.csv`.
+
+### 3. Import Data to MySQL
+
+Load the generated JSON data into your MySQL database:
+
+```bash
+npm install
+npm run import-data
+```
+
+### 4. Start the Dashboard
+
+Run the Node.js server:
+
+```bash
+npm start
+```
+
+Visit `http://localhost:3000` in your browser.
+
+## Features
+
+- **Automated Analysis**: Python script cleans data, calculates complex metrics (ROAS, CPA, CPC), and generates AI insights.
+- **Interactive Dashboard**: Sortable tables, monthly trend charts, and campaign filtering.
+- **Insights Panel**: Highlights top performers and scaling opportunities.
+- **Strict Architecture**: Follows the separation of concerns between Data Engineering (Python) and Web Application (Node/MySQL).
